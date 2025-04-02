@@ -1,0 +1,43 @@
+Usage: -t -M m
+RaceTwoThreads: M=10, timeSlicingEnsured=false
+age()=0, workerObject is alive, M=10
+age()=120, all Racer threads started
+age()=97, workerObject is running
+age()=120, workerObject is running
+age()=130, workerObject is running
+age()=114, workerObject is running
+age()=191, workerObject is done, sum = 4015
+age()=95, workerObject is running
+age()=212, workerObject is done, sum = 20075
+age()=191, workerObject is done, sum = 8030
+age()=193, workerObject is done, sum = 16060
+age()=192, workerObject is done, sum = 12045
+RaceTwoThreads done
+RaceTwoThreads: M=50, timeSlicingEnsured=false
+age()=0, workerObject is alive, M=50
+age()=102, all Racer threads started
+age()=126, workerObject is running
+age()=101, workerObject is running
+age()=101, workerObject is running
+age()=164, workerObject is done, sum = 2167075
+age()=99, workerObject is running
+age()=187, workerObject is done, sum = 8668300
+age()=102, workerObject is running
+age()=189, workerObject is done, sum = 10835375
+age()=170, workerObject is done, sum = 4334150
+age()=185, workerObject is done, sum = 6501225
+RaceTwoThreads done
+RaceTwoThreads: M=70, timeSlicingEnsured=false
+age()=0, workerObject is alive, M=70
+age()=106, all Racer threads started
+age()=81, workerObject is running
+age()=118, workerObject is running
+age()=82, workerObject is running
+age()=101, workerObject is running
+age()=180, workerObject is done, sum = 32931220
+age()=154, workerObject is done, sum = 8232805
+age()=172, workerObject is done, sum = 16465610
+age()=108, workerObject is running
+age()=177, workerObject is done, sum = 24698415
+age()=192, workerObject is done, sum = 41164025
+RaceTwoThreads done

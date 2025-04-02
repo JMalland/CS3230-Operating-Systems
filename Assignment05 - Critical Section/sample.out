@@ -1,0 +1,35 @@
+RaceManyThreads: M=20, N=4
+age()=0, RacerThread0 is alive, M=20
+age()=14, RacerThread1 is alive, M=20
+age()=15, RacerThread2 is alive, M=20
+age()=15, RacerThread3 is alive, M=20
+age()=17, all Racer threads started
+
+age()=17, RacerThread0 is running
+Name:Thread-0
+ID:14
+age()=31, RacerThread0 is done, sum = 58730
+
+
+
+age()=47, RacerThread2 is running
+Name:Thread-2
+ID:16
+age()=50, RacerThread2 is done, sum = 117460
+
+
+
+age()=54, RacerThread1 is running
+Name:Thread-1
+ID:15
+age()=58, RacerThread1 is done, sum = 176190
+
+
+
+age()=60, RacerThread3 is running
+Name:Thread-3
+ID:17
+age()=64, RacerThread3 is done, sum = 234920
+
+
+RaceManyThreads done

@@ -1,0 +1,27 @@
+Usage: -a -b bool -f file -h height -w width
+These are all the command line arguments before processing with GetOpt:
+ -aaa -b true -f theFile -w -80 -h3.33 arg1 arg2
+-U false
+-a 3
+-b true
+-f theFile
+-h 3.33
+-w -80
+normal argument 8 is arg1
+normal argument 9 is arg2
+These are all the command line arguments before processing with GetOpt:
+ -aaaaa -w90
+-U false
+-a 5
+-b false
+-f out
+-h 1.0
+-w 90
+These are all the command line arguments before processing with GetOpt:
+ -af theFile -w8 -b true
+-U false
+-a 1
+-b true
+-f theFile
+-h 1.0
+-w 8
