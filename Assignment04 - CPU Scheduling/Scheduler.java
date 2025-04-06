@@ -1,5 +1,3 @@
-
-
 import java.util.*;
 
 // Source code
@@ -18,29 +16,30 @@ public class Scheduler {
 		this.timeQuantum = timeQuantum;
 		this.listOfProcesses = listOfProcesses;
 	}
+
 	public void fcfs() {
 			timer = 0;
 			contextSwitch = 0;
 			cpu = null;
-			readyQueue = new ArrayList<>();
+			readyQueue = new ArrayList<>(listOfProcesses);
 			endProcesses = new ArrayList<>();
-			/********************************************
-			* Fill the code here (pseudo code is below)
-			* 1. Sort the processes according to arrivalTime
-			* 2. For each process
-			*		set process's responseTime
-			*       update timer according to the burstTime
-			*		set process's completionTime 
-			*		add it to endProcesses
-			* 3. Update contextSwitch by 1 when the process is completed  
-			************************************************/
+
+			// Sort the processes according to arrivalTime
+			// If B has a later arrival time, A comes before B
+			readyQueue.sort((a, b) -> a.arrivalTime - b.arrivalTime);
+
+			for (Process p : readyQueue) {
+				p.responseTime = timer - p.arrivalTime; // Set process's responseTime
+				timer += p.burstTime; // Update timer according to the burstTime
+				p.completionTime = timer; // Add it to endProcesses
+				contextSwitch ++; // Update contextSwitch by 1
+				endProcesses.add(p); // Add it to endProcesses
+			}
         System.out.println("-----------------FCFS----------------");
 		Utilities myUtility = new Utilities(endProcesses, contextSwitch, timer);
 		myUtility.calUtilities();
-			
 	}
 
-	
 	public void rr() {
 		timer = 0;
 		contextSwitch = 0;
@@ -63,21 +62,26 @@ public class Scheduler {
 
 			counter++;
 			cpu.serviceTime++;
-			/********************************************
-			* Fill the code here (pseudo code is below)
-			* 1. If this process is new to be allocated to cpu, set its responseTime
-			* 2. If the process is completed by comparing cpu.serviceTime == cpu.burstTime, 
-			*		set process's completionTime 
-			*		add it to endProcesses
-			*		clear up cpu (cpu = null)
-			*		increase contextSwitch by 1
-			*		reset counter to 0
-			* 2. else if the process uses up the timeQuantum
-			*		put it back to readyQueue
-			*		clear cpu (cpu = null)
-			*		increase contextSwitch by 1
-			*		reset counter to 0
-			************************************************/
+
+			// If this process is new to be allocated to cpu
+			if (cpu.serviceTime == 1)
+				cpu.responseTime = timer - cpu.arrivalTime; // Set its responseTime
+			
+			// If the process is completed by comparing cpu.serviceTime == cpu.burstTime
+			if (cpu.serviceTime == cpu.burstTime) {
+				cpu.completionTime = timer; // Set process's completionTime
+				endProcesses.add(cpu); // Add it to endProcesses
+				cpu = null; // Clear up cpu (cpu = null)
+				contextSwitch ++; // Increase contextSwitch by 1
+				counter = 0; // Reset counter to 0
+			}
+			// Else if the process uses up the timeQuantum
+			else if (counter == timeQuantum) {
+				readyQueue.add(cpu); // Put it back to readyQueue
+				cpu = null; // Clear cpu (cpu = null)
+				contextSwitch ++; // Increase contextSwitch by 1
+				counter = 0; // Reset counter to 0
+			}
 
 			timer++; // real time : cpu time
 
@@ -87,5 +91,4 @@ public class Scheduler {
 		myUtility.calUtilities();
 
 	}
-
 } 

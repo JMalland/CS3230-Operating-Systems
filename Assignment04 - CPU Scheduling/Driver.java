@@ -1,5 +1,3 @@
-
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,7 +21,7 @@ public class Driver {
 
 		Scheduler myScheduler = new Scheduler(csvFile, tq);
 		myScheduler.fcfs();
-		//myScheduler.rr();
+		myScheduler.rr();
 		kb.close();
 		inputStream.close();
 	}

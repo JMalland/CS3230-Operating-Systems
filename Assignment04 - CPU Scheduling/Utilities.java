@@ -18,16 +18,19 @@ public class Utilities {
 		double sumWaitingTime = 0.0;
 		double sumUtil = 0.0;
 		double sumResp = 0.0;
-		
-	/********************************************************************
-	*   Calculate the statistic data
-	*	1. CPU Utilization = sum of burst time/( sum of contextSwitch * 0.1 + sum of burst)
-	*	2. Throughput = processes / timer
-	*	3. Average Waiting Time = sum of all wait / processes
-	*	4. Average Turnaround Time = sum of all turnaround / processes
-	*
-	*
-	*********************************************************************/
+
+		for (Process p : endProcesses) {
+			sumTurnAroundTime += p.completionTime - p.arrivalTime;
+			sumWaitingTime += p.completionTime - p.arrivalTime - p.burstTime;
+			sumUtil += p.burstTime;
+			sumResp += p.responseTime;
+		}
+
+		double cpuUtilization = sumUtil / (contextSwitch * 0.1 + sumUtil);
+		double throughput = (double) endProcesses.size() / (double) timer;
+		double avgResponseTime = (sumResp) / endProcesses.size();
+		double avgWaitingTime = sumWaitingTime / endProcesses.size();
+		double avgTurnAroundTime = sumTurnAroundTime /endProcesses.size();
 
 		System.out.println("");
 		System.out.println("CPU Utilization: " + cpuUtilization);
