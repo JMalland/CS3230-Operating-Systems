@@ -1,55 +1,120 @@
-
-class Coordinator extends Thread {
+public class Coordinator extends Thread {
     private boolean[] rideBegin, rideOver;
     private int car_riders;
     private boolean finish_loading;
-    private int bump;
+    private int bump, wander;
+    // BBuffer private data
+    private int[] buffer;
+    private int in, out;
+    private int count;
+    private int size;
 
-    public Coordinator(int riders, int cars, int bumptime) {
-        // - initialize most data to zero
-        // - create buffer as an array of ints with size == cars
-        // - create bool arrays, rideBegin and rideOver. size == riders
-        // - initialize bool arrays to all false.
+    public Coordinator(int riders, int cars, int bumptime, int wanderTime) {
+        this.in = this.out = this.count = this.car_riders = 0;
+        this.finish_loading = false;
+        this.bump = bumptime;
+        this.wander = wanderTime;
+        this.size = cars;
+        this.buffer = new int[cars];
+        this.rideBegin = new boolean[riders];
+        this.rideOver = new boolean[riders];
+        for (int i = 0; i < riders; i++) {
+            this.rideBegin[i] = false;
+            this.rideOver[i] = false;
+        }
     }
 
     /* the following are public synchronized methods */
     public synchronized void getInLine(int rid) {
-        // - put rid into the buffer
-        // - set rideBegin[rid] to false
-        // - wait while rideBegin[rid] is false
+        enter(rid); // Add rider ID to the buffer
+        rideBegin[rid] = false;
+        while (!rideBegin[rid]) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 
     public synchronized int load() {
-        // - Get curRider from the buffer
-        // - set rideBegin[curRider] to true
-        // - signal
-        // - set finish_loading to false
-        // - wait while finish_loading is false
-        // - return curRider
-        return 0;
+        int curRider = remove(); // Get rider ID from the buffer
+        rideBegin[curRider] = true;
+        notifyAll(); // Notify riders waiting to start the ride
+        finish_loading = false;
+        while (!finish_loading) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        return curRider;
     }
-    
-    public synchronized  void takeAseat() {
-        // - set finish_loading to true
-        // - signal
-        // - increment car_riders
+
+    public synchronized void takeAseat() {
+        finish_loading = true;
+        notifyAll(); // Notify that loading is complete
+        car_riders++;
     }
 
     public synchronized void takeAride(int rid) {
-        // - set rideOver[rid] to false
-        // - wait while rideOver[rid] is false
+        rideOver[rid] = false;
+        while (!rideOver[rid]) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
-    
+
     public synchronized void unload(int rid) {
-        // - set rideOver[rid] to true
-        // - signal
+        rideOver[rid] = true;
+        notifyAll(); // Notify that the ride is over for the rider
     }
 
     /* the following are public helper methods that are NOT synchronized */
-    public int getBumpTime() { //-- returns amount of time a car bumps
-        return 0;
+    public int getBumpTime() {
+        return (int) (Math.random() * bump * 1000); // Returns the amount of time a car bumps
     }
-    public int findTotalRider() { //-- returns the total number of unloaded cars
-        return 0;
+
+    public int getWanderTime() {
+        return (int) (Math.random() * wander * 1000); // Returns the amount of time a rider wanders
+    }
+
+    public int findTotalRider() {
+        return car_riders; // Returns the total number of unloaded cars
+    }
+
+    /** BBuffer Public Methods */
+    public synchronized void enter(int id) {
+        while (count == size) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                System.out.println("In enter: " + e);
+            }
+        }
+        buffer[in] = id;
+        in = (in + 1) % size;
+        count++;
+        notifyAll();
+    }
+
+    public synchronized int remove() {
+        int tempId;
+        while (count == 0) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                System.out.println("In remove: " + e);
+            }
+        }
+        tempId = buffer[out];
+        out = (out + 1) % size;
+        count--;
+        notifyAll();
+        return tempId;
     }
 }

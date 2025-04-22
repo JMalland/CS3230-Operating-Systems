@@ -1,0 +1,154 @@
+C:\Users\Jacob\Documents\OpSys\Assignments\Assignment06 - Bumper Car> .\part1.bat
+
+C:\Users\Jacob\Documents\OpSys\Assignments\Assignment06 - Bumper Car>javac *.java  
+
+C:\Users\Jacob\Documents\OpSys\Assignments\Assignment06 - Bumper Car>java Bump.java -U  
+Usage: -r# -c# -b# -w# -R#
+   -r# = number of rider threads (default 10)
+   -c# = Number of car threads (default 5)
+   -b# = Max bump time in seconds (default 5)
+   -w# = Max wander time in seconds (default 10)
+   -R# = Total time in seconds (default 40)
+   -U = Print Usage
+
+C:\Users\Jacob\Documents\OpSys\Assignments\Assignment06 - Bumper Car>java Bump.java -r6 -c3 -b5 -w10 -R30
+Bumper Cars: numRiders = 6, numCars = 3
+timeBump = 5, timeWander = 10, runTime = 30
+Rider 5 is alive
+Rider 1 is alive
+Rider 0 is alive
+Rider 2 is alive
+Rider 4 is alive
+Car 0 is alive
+Rider 3 is alive
+All Car & Rider threads started.
+Car 1 is alive
+Car 2 is alive
+age() = 1, Car 0 is in line to be loaded.
+age() = 3, Car 1 is in line to be loaded.
+age() = 4, Car 2 is in line to be loaded.
+age() = 1, Rider 4 is wandering the park for 1091 ms
+age() = 0, Rider 1 is wandering the park for 680 ms
+age() = 0, Rider 2 is wandering the park for 4877 ms
+age() = 2, Rider 3 is wandering the park for 9766 ms
+age() = 0, Rider 5 is wandering the park for 9691 ms
+age() = 0, Rider 0 is wandering the park for 1941 ms
+age() = 697, Rider 1 is joining the line.
+age() = 1108, Rider 4 is joining the line.
+age() = 1698, Car 0 with Rider 1 is bumping on the floor for 2579 ms
+age() = 1698, Car 1 with Rider 4 is bumping on the floor for 909 ms
+age() = 1960, Rider 0 is joining the line.
+age() = 2110, Car 2 with Rider 0 is bumping on the floor for 2503 ms
+age() = 3615, Car 1 has unloaded.
+age() = 3615, Car 1 is in line to be loaded.
+age() = 3615, Rider 4 has finished riding.
+age() = 3616, Rider 4 is wandering the park for 482 ms
+age() = 4100, Rider 4 is joining the line.
+age() = 4895, Rider 2 is joining the line.
+age() = 5101, Car 1 with Rider 4 is bumping on the floor for 1476 ms
+age() = 5286, Car 0 has unloaded.
+age() = 5286, Car 0 is in line to be loaded.
+age() = 5286, Rider 1 has finished riding.
+age() = 5287, Rider 1 is wandering the park for 2479 ms
+age() = 5614, Car 2 has unloaded.
+age() = 5614, Car 2 is in line to be loaded.
+age() = 5614, Rider 0 has finished riding.
+age() = 5615, Rider 0 is wandering the park for 1328 ms
+age() = 6287, Car 0 with Rider 2 is bumping on the floor for 3425 ms
+age() = 6943, Rider 0 is joining the line.
+age() = 7580, Car 1 has unloaded.
+age() = 7580, Car 1 is in line to be loaded.
+age() = 7580, Rider 4 has finished riding.
+age() = 7580, Rider 4 is wandering the park for 25 ms
+age() = 7607, Rider 4 is joining the line.
+age() = 7767, Rider 1 is joining the line.
+age() = 7946, Car 2 with Rider 0 is bumping on the floor for 1378 ms
+age() = 7946, Car 1 with Rider 4 is bumping on the floor for 3677 ms
+age() = 9710, Rider 5 is joining the line.
+age() = 9785, Rider 3 is joining the line.
+age() = 10325, Car 2 has unloaded.
+age() = 10325, Rider 0 has finished riding.
+age() = 10325, Rider 0 is wandering the park for 3285 ms
+age() = 10325, Car 2 is in line to be loaded.
+age() = 10713, Car 0 has unloaded.
+age() = 10713, Rider 2 has finished riding.
+age() = 10713, Car 0 is in line to be loaded.
+age() = 10714, Rider 2 is wandering the park for 12 ms
+age() = 10727, Rider 2 is joining the line.
+age() = 11333, Car 2 with Rider 1 is bumping on the floor for 2892 ms
+age() = 11333, Car 0 with Rider 5 is bumping on the floor for 4339 ms
+age() = 12625, Car 1 has unloaded.
+age() = 12625, Car 1 is in line to be loaded.
+age() = 12625, Rider 4 has finished riding.
+age() = 12625, Rider 4 is wandering the park for 2924 ms
+age() = 13611, Rider 0 is joining the line.
+age() = 13626, Car 1 with Rider 3 is bumping on the floor for 3755 ms
+age() = 15229, Car 2 has unloaded.
+age() = 15229, Car 2 is in line to be loaded.
+age() = 15229, Rider 1 has finished riding.
+age() = 15229, Rider 1 is wandering the park for 2289 ms
+age() = 15550, Rider 4 is joining the line.
+age() = 16234, Car 2 with Rider 2 is bumping on the floor for 3271 ms
+age() = 16731, Car 0 has unloaded.
+age() = 16731, Rider 5 has finished riding.
+age() = 16731, Car 0 is in line to be loaded.
+age() = 16731, Rider 5 is wandering the park for 9267 ms
+age() = 17531, Rider 1 is joining the line.
+age() = 17746, Car 0 with Rider 0 is bumping on the floor for 1769 ms
+age() = 18394, Rider 3 has finished riding.
+age() = 18394, Rider 3 is wandering the park for 3954 ms
+age() = 18394, Car 1 has unloaded.
+age() = 18395, Car 1 is in line to be loaded.
+age() = 19396, Car 1 with Rider 4 is bumping on the floor for 2713 ms
+age() = 20522, Rider 0 has finished riding.
+age() = 20522, Rider 2 has finished riding.
+age() = 20522, Car 0 has unloaded.
+age() = 20522, Car 2 has unloaded.
+age() = 20522, Rider 0 is wandering the park for 8220 ms
+age() = 20523, Rider 2 is wandering the park for 6085 ms
+age() = 20523, Car 0 is in line to be loaded.
+age() = 20524, Car 2 is in line to be loaded.
+age() = 21530, Car 0 with Rider 1 is bumping on the floor for 4087 ms
+age() = 22351, Rider 3 is joining the line.
+age() = 23126, Car 1 has unloaded.
+age() = 23126, Car 1 is in line to be loaded.
+age() = 23126, Rider 4 has finished riding.
+age() = 23126, Rider 4 is wandering the park for 4323 ms
+age() = 23359, Car 2 with Rider 3 is bumping on the floor for 419 ms
+age() = 24786, Rider 3 has finished riding.
+age() = 24786, Rider 3 is wandering the park for 3008 ms
+age() = 24786, Car 2 has unloaded.
+age() = 24786, Car 2 is in line to be loaded.
+age() = 26008, Rider 5 is joining the line.
+age() = 26612, Rider 2 is joining the line.
+age() = 26627, Car 0 has unloaded.
+age() = 26627, Rider 1 has finished riding.
+age() = 26627, Car 0 is in line to be loaded.
+age() = 26627, Rider 1 is wandering the park for 1470 ms
+age() = 27012, Car 1 with Rider 2 is bumping on the floor for 1333 ms
+age() = 27012, Car 2 with Rider 5 is bumping on the floor for 315 ms
+age() = 27461, Rider 4 is joining the line.
+age() = 27647, Car 0 with Rider 4 is bumping on the floor for 1540 ms
+age() = 27814, Rider 3 is joining the line.
+age() = 28107, Rider 1 is joining the line.
+age() = 28340, Car 2 has unloaded.
+age() = 28340, Car 2 is in line to be loaded.
+age() = 28340, Rider 5 has finished riding.
+age() = 28341, Rider 5 is wandering the park for 2894 ms
+age() = 28464, Car 2 with Rider 3 is bumping on the floor for 3610 ms
+age() = 28754, Rider 0 is joining the line.
+age() = 29361, Car 1 has unloaded.
+age() = 29361, Car 1 is in line to be loaded.
+age() = 29361, Rider 2 has finished riding.
+age() = 29362, Rider 2 is wandering the park for 3060 ms
+Calling stopIts; wait 15 seconds; do mini-report
+age() = 30221, Car 0 has unloaded.
+age() = 30221, Rider 4 has finished riding.
+age() = 30376, Car 1 with Rider 1 is bumping on the floor for 4456 ms
+age() = 31246, Rider 5 is joining the line.
+age() = 32424, Rider 2 is joining the line.
+age() = 33087, Car 2 has unloaded.
+age() = 33087, Rider 3 has finished riding.
+age() = 35846, Car 1 has unloaded.
+age() = 35846, Rider 1 has finished riding.
+Number of times a car was ridden 20
